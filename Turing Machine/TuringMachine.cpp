@@ -28,9 +28,7 @@ TuringMachine::TuringMachine(vstr& cEstados, vchar& sEntrada, vchar& sFita, vstr
 }
 
 void TuringMachine::init_fita(string input){
-	/**
-	 * @TODO: Inicializar a fita com a string de entrada
-	 */
+	
 }
 
 
@@ -40,11 +38,15 @@ void TuringMachine::init_fita(string input){
 bool TuringMachine::reconhecer_linguagem(string input){
 	OP = RECONHECEDOR_DE_LING;
 	bool reconhece = false;
-
+	
+	cout << "\nInicializando fita com: " << input << endl;
+	Fita::init(input, sFita);	
+	Fita::print();
+	
 	vest estados;
 
-	cout << "\nInicializando fita com: " << input << endl; 
-	init_fita(input);
+ 
+
 
 	cout << "Inicializando Estados..." << endl;
 	estados = parse_transicoes(); 
@@ -66,16 +68,18 @@ vest TuringMachine::parse_transicoes(){
 	vest ve;
 	char del[] = "(,";
 	
-	for(uint i = 0; i < cTrans.size(); i++){ /// @TODO: pq ta cortando a virgula?
+	for(uint i = 0; i < cTrans.size(); i++){
+		string s = cTrans.at(i).data();
 		string tok = strtok((char*)cTrans.at(i).data(), del);
 		int index = index_in(tok, ve);
+		
 		if( index == -1 ){ // criar um novo estado
 			Estado e;
 			e.nome = tok;
-			e.transicoes.push_back(cTrans.at(i));
+			e.transicoes.push_back(s);
 			ve.push_back(e);
 		} else { // adicionar em estado existente
-			ve.at(index).transicoes.push_back(cTrans.at(i));
+			ve.at(index).transicoes.push_back(s);
 		}
 	}
 //	for(uint i = 0; i < ve.size(); i++){
