@@ -10,21 +10,17 @@
 
 using namespace std;
 
-
+// Pra facilitar
 typedef vector<char> vchar;
 typedef vector<string> vstr;
 
-struct Estado {
+typedef struct  {
 	vstr transicoes;
-	string name;
-};
-
-typedef struct Estado Estado;
-
-
+	string nome;
+}Estado;
 
 ostream& operator<<(ostream& os, const Estado& e) {
-    return os << e.name << endl; 
+    return os << e.nome << endl; 
 }
 
 #endif /*HEADER_H_*/

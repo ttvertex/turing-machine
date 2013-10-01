@@ -13,12 +13,6 @@ int main(int argc, char** argv){
 
 	le_arquivo();
 	imprime_arquivo();
-	
-	
-	Estado e;
-	e.name =  "q1";
-	cout << e;
-
 }
 
 
