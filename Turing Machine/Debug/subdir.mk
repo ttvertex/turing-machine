@@ -4,14 +4,17 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../Fita.cpp \
 ../TuringMachine.cpp \
 ../main.cpp 
 
 OBJS += \
+./Fita.o \
 ./TuringMachine.o \
 ./main.o 
 
 CPP_DEPS += \
+./Fita.d \
 ./TuringMachine.d \
 ./main.d 
 

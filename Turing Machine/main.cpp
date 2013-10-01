@@ -1,5 +1,7 @@
 #include "Header.h"
 
+#include "TuringMachine.h"
+
 int E, SE, SF, NT;
 vchar sEntrada, sFita;
 vstr  cTrans, cEstados, cTeste;
@@ -12,7 +14,9 @@ void imprime_arquivo();
 int main(int argc, char** argv){
 
 	le_arquivo();
-	imprime_arquivo();
+	//imprime_arquivo();
+	TuringMachine* t = new TuringMachine(cEstados, sEntrada, sFita, cTrans);
+	t->reconhecer_linguagem(cTeste[0]);
 }
 
 
