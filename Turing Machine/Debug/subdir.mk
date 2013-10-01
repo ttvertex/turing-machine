@@ -4,12 +4,15 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../TuringMachine.cpp \
 ../main.cpp 
 
 OBJS += \
+./TuringMachine.o \
 ./main.o 
 
 CPP_DEPS += \
+./TuringMachine.d \
 ./main.d 
 
 

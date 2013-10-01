@@ -19,7 +19,7 @@ typedef struct  {
 	string nome;
 }Estado;
 
-ostream& operator<<(ostream& os, const Estado& e) {
+inline ostream& operator<<(ostream& os, const Estado& e) {
     return os << e.nome << endl; 
 }
 
