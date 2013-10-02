@@ -16,16 +16,18 @@ char Fita::get(){
 	return fita.at(pos);
 }
 
+void Fita::set(char c){
+	fita[pos] = c;
+}
+
 void Fita::D(){
-	pos += DIREITA;
+	if(pos + DIREITA < fita.size())
+		pos += DIREITA;
 }
 
 void Fita::E(){
-	pos += ESQUERDA;
-}
-
-void Fita::set(char c){
-	fita[pos] = c;
+	if(pos + ESQUERDA > -1)
+		pos += ESQUERDA;
 }
 
 void Fita::print(){
