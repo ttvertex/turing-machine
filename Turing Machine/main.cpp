@@ -15,10 +15,15 @@ void imprime_arquivo();
 
 int main(int argc, char** argv){
 
-	le_arquivo();
-	//imprime_arquivo();
-	TuringMachine* t = new TuringMachine(cEstados, sEntrada, sFita, cTrans);
-	t->reconhecer_linguagem(cTeste[0]);
+	le_arquivo();	
+	
+	for(uint i = 0; i < cTeste.size(); i++){
+		TuringMachine t(cEstados, sEntrada, sFita, cTrans);
+		if(t.reconhecer_linguagem(cTeste[i]+"B"))
+			cout << "Aceita" << endl;
+		else
+			cout << "Rejeita" << endl;
+	}
 }
 
 

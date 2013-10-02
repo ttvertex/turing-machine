@@ -31,7 +31,7 @@ TuringMachine::TuringMachine(vstr& cEstados, vchar& sEntrada, vchar& sFita, vstr
 }
 
 void TuringMachine::init_fita(string input){
-	
+
 }
 
 #define QACEITA "qac"
@@ -41,42 +41,41 @@ void TuringMachine::init_fita(string input){
  * input: caso de teste
  */
 bool TuringMachine::reconhecer_linguagem(string input){
-	OP = RECONHECEDOR_DE_LING;
-	bool reconhece = false;
-
-	cout << "\nInicializando fita..." << endl;
+	// Inicializa a fita
 	Fita::init(input, sFita);
-	
+
 	// Transforma o vetor de transicoes em um vetor de struct Estado
-	cout << "Inicializando Estados..." << endl;
-	vest estados = parse_transicoes();
-	
+	vest estados = create_estados();
+
 	// Nome do estado (q1,q2...) e o indice correspondente no vetor de estados
 	map<string, int> estadoIndex; 
 	for(uint i = 0; i < estados.size(); i++){ /// Inicializa o map
 		estadoIndex[estados.at(i).nome] = i;
 	}
-	
-	Estado eatual = estados.at(0);
-	while( eatual.nome != QACEITA && eatual.nome != QREJEITA ){ // enquanto nao chegar no qaceita
+
+	Estado_t eatual = estados.at(0);
+	while( true ){ // enquanto nao chegar no qaceita
 		// Retorna o indice no vetor de transicoes do estado, que tem a transicao para o char 
 		int x = verifica_transicao(eatual, Fita::get());
 
 		if( x == -1 ){ // se nao encontrou a transicao no estado, aborta
-			eatual.nome = QREJEITA;
 			return false;
-		}else{
-			string s = aonde_ir(eatual, x);
-			cout << estadoIndex[s] << endl;
 		}
-		eatual.nome = QACEITA;
+		
+#ifdef DEBUG
+		Fita::print();
+#endif
+		Transicao_t t = parse_transicao(eatual, x);
+		Fita::set(t.cescrita); // Escreve o caractere na fita
+		if(t.direcao == 'D')   // Anda na fita
+			Fita::D();
+		else
+			Fita::E();
+
+		if( t.estado == QACEITA )
+			return true;
+		eatual = estados.at(estadoIndex[t.estado]);
 	}
-	/**
-	 * @TODO: Implementar a verificacao das transicoes, conforme o caso de teste
-	 * e terminar de fazer a fita p/ verificar se a maquina reconhece;
-	 * 
-	 */
-	return reconhece;
 }
 
 /**
@@ -84,17 +83,17 @@ bool TuringMachine::reconhecer_linguagem(string input){
  * onde cada estado tem suas funcoes de transicao (que saem dele)
  */
 
-vest TuringMachine::parse_transicoes(){
+vest TuringMachine::create_estados(){
 	vest ve;
 	char del[] = "(,";
-	
+
 	for(uint i = 0; i < cTrans.size(); i++){
 		string s = cTrans.at(i).data();
 		string tok = strtok((char*)cTrans.at(i).data(), del);
 		int index = index_in(tok, ve);
-		
+
 		if( index == -1 ){ // criar um novo estado
-			Estado e;
+			Estado_t e;
 			e.nome = tok;
 			e.transicoes.push_back(s);
 			ve.push_back(e);
@@ -102,11 +101,6 @@ vest TuringMachine::parse_transicoes(){
 			ve.at(index).transicoes.push_back(s);
 		}
 	}
-//	for(uint i = 0; i < ve.size(); i++){
-//		cout << ve[i] << endl;
-//		for(uint j = 0; j < ve.at(i).transicoes.size(); j++)
-//			cout << ve[i].transicoes.at(j) << endl;
-//	}
 	return ve;
 }
 
@@ -126,7 +120,7 @@ int TuringMachine::index_in(string& str, vest& ve){
  * Se sim, retorna o indice no vetor de transicoes, senao retorna -1
  * 
  */
-int TuringMachine::verifica_transicao(Estado& e, char c){
+int TuringMachine::verifica_transicao(Estado_t& e, char c){
 	vstr v = e.transicoes;
 	char del[] = ")";
 	for(uint i = 0; i < v.size(); i++){
@@ -139,20 +133,31 @@ int TuringMachine::verifica_transicao(Estado& e, char c){
 }
 
 /*
- * Verifica para qual estado a transicao leva, retorna o nome do estado
- * ex: (q0,1)=(q1,x,D)
- * RETORNA "q1"
+ * Retorna uma struct correspondente ao destino da transicao, ou seja, pra onde ela vai levar,
+ * o que vai escrever na fita, e para qual direcao o controle da fita deve ir.  
+ * ex: (q1,0)=(q2,x,D)
+ * RETORNA uma struct { q2, x, D}
  */
-string TuringMachine::aonde_ir(Estado& e, int i){
-	string s = e.transicoes.at(i);
-	string res;
+Transicao_t TuringMachine::parse_transicao(Estado_t& e, int index){
+	Transicao_t t;
+	string s = e.transicoes.at(index);
+	
+	string est;
 	int pos = s.find("=(");
 	char c = s[pos];
 	for(int i = pos+2; c != ','; i++){
 		c = s[i];
 		if(c != ',')
-			res += c;
+			est += c;
+		else{
+			t.estado = est;
+			t.cescrita = s[i+1];
+			t.direcao  = s[i+3];
+			break;
+		}
 	}
-	cout << res << endl;
-	return res;
+#ifdef DEBUG
+	cout << t << endl;
+#endif
+	return t;
 }

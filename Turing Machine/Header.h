@@ -6,6 +6,8 @@
 #include <vector>
 #include <string.h>
 
+//#define DEBUG
+
 #define PROCESSADOR_DE_FC 'P'
 #define RECONHECEDOR_DE_LING 'R'
 
@@ -22,12 +24,21 @@ typedef unsigned int   uint;
 typedef struct  {
 	vstr transicoes;
 	string nome;
-}Estado;
+}Estado_t;
 
-typedef vector<Estado> vest;
+typedef struct {
+	string estado;   // praonde ir 
+	char   cescrita; // escrever oq
+	char   direcao;  // andar a fita em qual dir
+} Transicao_t;
 
-inline ostream& operator<<(ostream& os, const Estado& e) {
+typedef vector<Estado_t> vest;
+
+inline ostream& operator<<(ostream& os, const Estado_t& e) {
     return os << e.nome << endl; 
+}
+inline ostream& operator<<(ostream& os, const Transicao_t& t) {
+    return os << "(" << t.estado << "," << t.cescrita << "," << t.direcao << ")" << endl; 
 }
 
 #endif /*HEADER_H_*/

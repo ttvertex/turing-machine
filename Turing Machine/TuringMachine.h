@@ -13,16 +13,14 @@ public:
 private:
 	void init();
 	void init_fita(string intput);
-	vest parse_transicoes();
 	int index_in(string& str, vest& ve); //returns the index
-	
-	int verifica_transicao(Estado& e, char c); // verifica se o estado e tem uma transicao para c
-	string aonde_ir(Estado& e, int i); // verifica para qual estado a transicao leva, retorna o nome do estado
+	vest create_estados();
+	int verifica_transicao(Estado_t& e, char c); // verifica se o estado e tem uma transicao para c
+	Transicao_t parse_transicao(Estado_t& e, int i); // verifica para qual estado a transicao leva, retorna o nome do estado
 	
 	int E, SE, SF, NT;
 	vchar sEntrada, sFita;
 	vstr  cTrans, cEstados;
-	char OP;
 };
 
 #endif /*TURINGMACHINE_H_*/
