@@ -17,9 +17,9 @@ int main(int argc, char** argv){
 
 	le_arquivo();	
 	
-	for(uint i = 0; i < cTeste.size(); i++){
+	for(uint i = 0; i < 1; i++){
 		TuringMachine t(cEstados, sEntrada, sFita, cTrans);
-		if(t.reconhecer_linguagem(cTeste[i]+"B"))
+		if(t.reconhecer_linguagem(cTeste[0]+"B"))
 			cout << "Aceita" << endl;
 		else
 			cout << "Rejeita" << endl;
