@@ -19,11 +19,6 @@
 
 TuringMachine::TuringMachine(vstr& cEstados, vchar& sEntrada, vchar& sFita, vstr& cTrans)
 {
-	E  = cEstados.size(); 
-	SE = sEntrada.size();
-	SF = sFita.size();
-	NT = cTrans.size();
-
 	this->sEntrada = sEntrada;
 	this->sFita    = sFita;
 	this->cTrans   = cTrans;
@@ -48,6 +43,8 @@ bool TuringMachine::reconhecer_linguagem(string input){
 	vest estados = create_estados();
 
 	// Nome do estado (q1,q2...) e o indice correspondente no vetor de estados
+	// ex: q1 : 0
+	//     q2 : 1
 	map<string, int> estadoIndex; 
 	for(uint i = 0; i < estados.size(); i++){ /// Inicializa o map
 		estadoIndex[estados.at(i).nome] = i;
@@ -71,7 +68,7 @@ bool TuringMachine::reconhecer_linguagem(string input){
 			Fita::D();
 		else
 			Fita::E();
-
+		
 		if( t.estado == QACEITA )
 			return true;
 		eatual = estados.at(estadoIndex[t.estado]);

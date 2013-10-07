@@ -4,7 +4,7 @@
 
 #include "TuringMachine.h"
 
-int E, SE, SF, NT;
+
 vchar sEntrada, sFita;
 vstr  cTrans, cEstados, cTeste;
 char OP;
@@ -17,17 +17,16 @@ int main(int argc, char** argv){
 
 	le_arquivo();	
 	
-	for(uint i = 0; i < 1; i++){
-		TuringMachine t(cEstados, sEntrada, sFita, cTrans);
-		if(t.reconhecer_linguagem(cTeste[0]+"B"))
-			cout << "Aceita" << endl;
-		else
-			cout << "Rejeita" << endl;
-	}
+	TuringMachine tm(cEstados, sEntrada, sFita, cTrans);
+	if(tm.reconhecer_linguagem(cTeste[0]+"B"))
+		cout << "aceita" << endl;
+	else
+		cout << "rejeita" << endl;
 }
 
 
 void le_arquivo(){
+	int E, SE, SF, NT;
 
 	cin >> E >> SE >> SF >> NT;
 
@@ -75,34 +74,34 @@ void le_arquivo(){
 
 void imprime_arquivo() {
 
-	cout << "\nEstados: "<< E << "\nSimbolos de Entrada: " << SE 
-	<< "\nSimbolos da Fita: " << SF << "\nNumero de Transicoes " << NT << endl;
+	cout << "\nEstados: "<< cEstados.size() << "\nSimbolos de Entrada: " << sEntrada.size() 
+	<< "\nSimbolos da Fita: " << sFita.size() << "\nNumero de Transicoes " << cTrans.size() << endl;
 
 	/// Estados
 	cout << endl;
-	for(int i = 0; i < E; i++){
+	for(uint i = 0; i < cEstados.size(); i++){
 		cout << cEstados[i] << " "; 
 	}
 	// Simbolos de Entrada
 	cout << endl;
-	for(int i = 0; i < SE; i++){
+	for(uint i = 0; i < sEntrada.size(); i++){
 		cout << sEntrada[i] << " ";
 	}
 	/// Simbolos da Fita
 	cout << endl;
-	for(int i = 0; i < SF; i++){
+	for(uint i = 0; i < sFita.size(); i++){
 		cout << sFita[i] << " ";
 	}
 	/// Conjunto de Transicoes
 	cout << endl;
-	for(int i = 0; i < NT; i++){
+	for(uint i = 0; i <  cTrans.size(); i++){
 		cout << cTrans[i] << endl;
 	}
 
 	if(OP == RECONHECEDOR_DE_LING){
 		/// Conjunto de testes
 		cout << "\nReconhecer Linguagens: " << endl;
-		for(unsigned int i = 0; i < cTeste.size(); i++){
+		for(uint i = 0; i < cTeste.size(); i++){
 			cout << cTeste[i] << endl;
 		}
 	}
