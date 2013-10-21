@@ -29,9 +29,6 @@ void TuringMachine::init_fita(string input){
 
 }
 
-#define QACEITA "qac"
-#define QREJEITA "qrej"
-
 /**
  * input: caso de teste
  */
@@ -58,7 +55,6 @@ bool TuringMachine::reconhecer_linguagem(string input){
 		if( x == -1 ){ // se nao encontrou a transicao no estado, aborta
 			return false;
 		}
-		
 #ifdef DEBUG
 		Fita::print();
 #endif
@@ -66,13 +62,28 @@ bool TuringMachine::reconhecer_linguagem(string input){
 		Fita::set(t.cescrita); // Escreve o caractere na fita
 		if(t.direcao == 'D')   // Anda na fita
 			Fita::D();
-		else
+		else if(t.direcao == 'E')
 			Fita::E();
+		else{
+			cout << "\nErro: direcao intexistente!" << endl;
+			exit(EXIT_FAILURE);
+		}
 		
 		if( t.estado == QACEITA )
 			return true;
 		eatual = estados.at(estadoIndex[t.estado]);
 	}
+}
+
+/**
+ * Processa uma funcao e imprime o resultado final da fita
+ */
+bool TuringMachine::processa_funcao(string input){
+	if(reconhecer_linguagem(input)){
+		Fita::print();
+		return true;
+	}
+	return false;
 }
 
 /**

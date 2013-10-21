@@ -5,11 +5,15 @@
 #include <iostream>
 #include <vector>
 #include <string.h>
+#include <cstdlib>
 
 //#define DEBUG
 
 #define PROCESSADOR_DE_FC 'P'
 #define RECONHECEDOR_DE_LING 'R'
+
+#define QACEITA "qac"
+#define QREJEITA "qrej"
 
 #define DIREITA 1
 #define ESQUERDA -1

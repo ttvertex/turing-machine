@@ -22,14 +22,18 @@ void Fita::set(char c){
 }
 
 void Fita::D(){
+	if((pos + DIREITA) >= fita.size())
+		fita.push_back('B');
 	pos += DIREITA;
+	
 #ifdef DEBUG
 	cout << "ptr da fita: " << pos - DIREITA << " -> " << pos << endl;
 #endif
 }
 
 void Fita::E(){
-	pos += ESQUERDA;
+	if(pos + ESQUERDA >= 0)
+		pos += ESQUERDA;
 #ifdef DEBUG
 	cout << "ptr da fita: " << pos - ESQUERDA << " -> " << pos << endl;
 #endif

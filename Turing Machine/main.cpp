@@ -16,12 +16,22 @@ void imprime_arquivo();
 int main(int argc, char** argv){
 
 	le_arquivo();	
-	
+
 	TuringMachine tm(cEstados, sEntrada, sFita, cTrans);
-	if(tm.reconhecer_linguagem(cTeste[0]+"B"))
-		cout << "aceita" << endl;
-	else
-		cout << "rejeita" << endl;
+	
+	switch(OP){
+		case PROCESSADOR_DE_FC:
+			if(!tm.processa_funcao(cTeste[1]+"B"))
+				cout << "rejeita" << endl;
+			break;
+		case RECONHECEDOR_DE_LING:
+			if(tm.reconhecer_linguagem(cTeste[1]+"B"))
+				cout << "aceita" << endl;
+			else
+				cout << "rejeita" << endl;
+			break;
+	}
+
 }
 
 
@@ -59,16 +69,13 @@ void le_arquivo(){
 	}
 
 	cin >> OP;
-	if(OP == RECONHECEDOR_DE_LING){
-		int t;
-		cin >> t;
-		for(int i = 0; i < t; i++){
-			string s;
-			cin >> s;
-			cTeste.push_back(s);
-		}
-	}else if (OP == PROCESSADOR_DE_FC){ 
-		
+	
+	int t;
+	cin >> t;
+	for(int i = 0; i < t; i++){
+		string s;
+		cin >> s;
+		cTeste.push_back(s);
 	}
 }
 

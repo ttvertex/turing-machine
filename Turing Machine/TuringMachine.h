@@ -9,6 +9,7 @@ class TuringMachine : public Fita
 public:
 	TuringMachine(vstr& cEstados, vchar& sEntrada, vchar& sFita, vstr& cTrans);
 	bool reconhecer_linguagem(string input);
+	bool processa_funcao(string input);
 	
 private:
 	void init();

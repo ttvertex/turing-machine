@@ -1,0 +1,23 @@
+5 3 4 13 
+q1 q2 q3 q4 qac
+a b #
+a b # B
+(q1,a)=(q1,a,D)
+(q1,b)=(q1,b,D)
+(q1,#)=(q1,#,D)
+(q1,B)=(q2,B,E)
+(q2,a)=(q3,B,E)
+(q2,b)=(q4,B,E)
+(q2,#)=(qac,B,E)
+(q3,a)=(q3,a,E)
+(q3,b)=(q4,a,E)
+(q3,#)=(qac,a,E)
+(q4,b)=(q4,b,E)
+(q4,a)=(q3,b,E)
+(q4,#)=(qac,b,E)
+P
+3
+aaaba#ababbb
+aaaabbb
+bbab#aab
+
