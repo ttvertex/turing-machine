@@ -32,7 +32,9 @@ void Fita::D(){
 }
 
 void Fita::E(){
-	if(pos + ESQUERDA >= 0)
+	if(pos + ESQUERDA < 0)
+		pos = 0;
+	else
 		pos += ESQUERDA;
 #ifdef DEBUG
 	cout << "ptr da fita: " << pos - ESQUERDA << " -> " << pos << endl;

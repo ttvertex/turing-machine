@@ -7,7 +7,7 @@
 #include <string.h>
 #include <cstdlib>
 
-//#define DEBUG
+#define DEBUG
 
 #define PROCESSADOR_DE_FC 'P'
 #define RECONHECEDOR_DE_LING 'R'

@@ -17,7 +17,7 @@ public:
 	
 private:
 	vchar fita; // fita em si
-	uint pos;   // posicao do ptr
+	int pos;   // posicao do ptr
 	int sentido; 
 	vchar sFita; // simbolos da fita
 };

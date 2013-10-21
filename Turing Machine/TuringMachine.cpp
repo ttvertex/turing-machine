@@ -68,7 +68,7 @@ bool TuringMachine::reconhecer_linguagem(string input){
 			cout << "\nErro: direcao intexistente!" << endl;
 			exit(EXIT_FAILURE);
 		}
-		
+
 		if( t.estado == QACEITA )
 			return true;
 		eatual = estados.at(estadoIndex[t.estado]);
@@ -149,7 +149,7 @@ int TuringMachine::verifica_transicao(Estado_t& e, char c){
 Transicao_t TuringMachine::parse_transicao(Estado_t& e, int index){
 	Transicao_t t;
 	string s = e.transicoes.at(index);
-	
+
 	string est;
 	int pos = s.find("=(");
 	char c = s[pos];
