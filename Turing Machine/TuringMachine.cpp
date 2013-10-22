@@ -25,10 +25,6 @@ TuringMachine::TuringMachine(vstr& cEstados, vchar& sEntrada, vchar& sFita, vstr
 	this->cEstados = cEstados;
 }
 
-void TuringMachine::init_fita(string input){
-
-}
-
 /**
  * input: caso de teste
  */
@@ -62,9 +58,12 @@ bool TuringMachine::reconhecer_linguagem(string input){
 		Fita::set(t.cescrita); // Escreve o caractere na fita
 		if(t.direcao == 'D')   // Anda na fita
 			Fita::D();
-		else if(t.direcao == 'E')
-			Fita::E();
-		else{
+		else if(t.direcao == 'E'){
+			if(!Fita::E()){ // mover para negativo! fita finita para a esquerda.
+				//cout << "mover para negativo! fita finita para a esquerda." <<endl;
+				return false;
+			}
+		}else{
 			cout << "\nErro: direcao intexistente!" << endl;
 			exit(EXIT_FAILURE);
 		}

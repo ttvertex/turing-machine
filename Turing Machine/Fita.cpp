@@ -2,7 +2,7 @@
 
 Fita::Fita()
 {
-	pos = DEFAULT_INITIAL;
+	pos = 0;
 }
 
 void Fita::init(string& input, vchar& sFita)
@@ -11,6 +11,7 @@ void Fita::init(string& input, vchar& sFita)
 	fita.clear();
 	for(uint i = 0; i < input.size(); i++)
 		fita.push_back(input[i]);
+	pos = 0;
 }
 
 char Fita::get(){
@@ -31,14 +32,15 @@ void Fita::D(){
 #endif
 }
 
-void Fita::E(){
-	if(pos + ESQUERDA < 0)
-		pos = 0;
+bool Fita::E(){
+	if((pos + ESQUERDA) < 0)
+		return false;
 	else
 		pos += ESQUERDA;
 #ifdef DEBUG
-	cout << "ptr da fita: " << pos - ESQUERDA << " -> " << pos << endl;
+	cout << "eptr da fita: " << pos - ESQUERDA << " -> " << pos << endl;
 #endif
+	return true;
 }
 
 void Fita::print(){

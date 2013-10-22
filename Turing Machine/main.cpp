@@ -21,7 +21,7 @@ int main(int argc, char** argv){
 	
 	switch(OP){
 		case PROCESSADOR_DE_FC:
-			if(!tm.processa_funcao(cTeste[1]+"B"))
+			if(!tm.processa_funcao(cTeste[0]+"B"))
 				cout << "rejeita" << endl;
 			break;
 		case RECONHECEDOR_DE_LING:

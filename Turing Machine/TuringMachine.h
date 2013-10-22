@@ -4,16 +4,14 @@
 #include "Header.h"
 #include "Fita.h"
 
-class TuringMachine : public Fita
+class TuringMachine :  Fita
 {
 public:
 	TuringMachine(vstr& cEstados, vchar& sEntrada, vchar& sFita, vstr& cTrans);
 	bool reconhecer_linguagem(string input);
 	bool processa_funcao(string input);
 	
-private:
-	void init();
-	void init_fita(string intput);
+private:	
 	int index_in(string& str, vest& ve); //returns the index
 	vest create_estados();
 	int verifica_transicao(Estado_t& e, char c); // verifica se o estado e tem uma transicao para c
