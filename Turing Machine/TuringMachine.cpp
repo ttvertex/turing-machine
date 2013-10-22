@@ -30,7 +30,8 @@ TuringMachine::TuringMachine(vstr& cEstados, vchar& sEntrada, vchar& sFita, vstr
  */
 bool TuringMachine::reconhecer_linguagem(string input){
 	// Inicializa a fita
-	Fita::init(input, sFita);
+	
+	fita.init(input, sFita);
 
 	// Transforma o vetor de transicoes em um vetor de struct Estado
 	vest estados = create_estados();
@@ -46,20 +47,20 @@ bool TuringMachine::reconhecer_linguagem(string input){
 	Estado_t eatual = estados.at(0);
 	while( true ){ // enquanto nao chegar no qaceita
 		// Retorna o indice no vetor de transicoes do estado, que tem a transicao para o char 
-		int x = verifica_transicao(eatual, Fita::get());
+		int x = verifica_transicao(eatual, fita.get());
 
 		if( x == -1 ){ // se nao encontrou a transicao no estado, aborta
 			return false;
 		}
 #ifdef DEBUG
-		Fita::print();
+		fita.print();
 #endif
 		Transicao_t t = parse_transicao(eatual, x);
-		Fita::set(t.cescrita); // Escreve o caractere na fita
+		fita.set(t.cescrita); // Escreve o caractere na fita
 		if(t.direcao == 'D')   // Anda na fita
-			Fita::D();
+			fita.D();
 		else if(t.direcao == 'E'){
-			if(!Fita::E()){ // mover para negativo! fita finita para a esquerda.
+			if(!fita.E()){ // mover para negativo! fita finita para a esquerda.
 				//cout << "mover para negativo! fita finita para a esquerda." <<endl;
 				return false;
 			}
@@ -70,6 +71,7 @@ bool TuringMachine::reconhecer_linguagem(string input){
 
 		if( t.estado == QACEITA )
 			return true;
+			
 		eatual = estados.at(estadoIndex[t.estado]);
 	}
 }
@@ -79,7 +81,7 @@ bool TuringMachine::reconhecer_linguagem(string input){
  */
 bool TuringMachine::processa_funcao(string input){
 	if(reconhecer_linguagem(input)){
-		Fita::print();
+		fita.print();
 		return true;
 	}
 	return false;
@@ -93,20 +95,21 @@ bool TuringMachine::processa_funcao(string input){
 vest TuringMachine::create_estados(){
 	vest ve;
 	char del[] = "(,";
-
+	
 	for(uint i = 0; i < cTrans.size(); i++){
 		string s = cTrans.at(i).data();
-		string tok = strtok((char*)cTrans.at(i).data(), del);
+		
+		string tok = strtok((char*)s.data(), del);
 		int index = index_in(tok, ve);
 
 		if( index == -1 ){ // criar um novo estado
 			Estado_t e;
 			e.nome = tok;
-			e.transicoes.push_back(s);
+			e.transicoes.push_back(cTrans.at(i).data());
 			ve.push_back(e);
 		} else { // adicionar em estado existente
-			ve.at(index).transicoes.push_back(s);
-		}
+			ve.at(index).transicoes.push_back(cTrans.at(i).data());
+		}	
 	}
 	return ve;
 }

@@ -4,7 +4,7 @@
 #include "Header.h"
 #include "Fita.h"
 
-class TuringMachine :  Fita
+class TuringMachine
 {
 public:
 	TuringMachine(vstr& cEstados, vchar& sEntrada, vchar& sFita, vstr& cTrans);
@@ -18,6 +18,7 @@ private:
 	Transicao_t parse_transicao(Estado_t& e, int i); // verifica para qual estado a transicao leva, retorna o nome do estado
 	vchar sEntrada, sFita;
 	vstr  cTrans, cEstados;
+	Fita fita;
 };
 
 #endif /*TURINGMACHINE_H_*/

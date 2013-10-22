@@ -25,10 +25,12 @@ int main(int argc, char** argv){
 				cout << "rejeita" << endl;
 			break;
 		case RECONHECEDOR_DE_LING:
-			if(tm.reconhecer_linguagem(cTeste[1]+"B"))
-				cout << "aceita" << endl;
-			else
-				cout << "rejeita" << endl;
+			for(uint i = 0; i < cTeste.size(); i++){
+				if(tm.reconhecer_linguagem(cTeste[i]+"B"))
+					cout << "aceita" << endl;
+				else
+					cout << "rejeita" << endl;
+			}
 			break;
 	}
 
