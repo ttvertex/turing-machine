@@ -13,7 +13,7 @@ public:
 	void D();         // walk the pointer to right
 	bool E();         // walk the pointer to left
 	void print();
-	
+	void print_sem_brancos();
 private:
 	vchar fita; // fita em si
 	int  pos;   // posicao do ptr 

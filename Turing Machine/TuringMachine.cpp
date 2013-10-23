@@ -81,7 +81,7 @@ bool TuringMachine::reconhecer_linguagem(string input){
  */
 bool TuringMachine::processa_funcao(string input){
 	if(reconhecer_linguagem(input)){
-		fita.print();
+		fita.print_sem_brancos();
 		return true;
 	}
 	return false;

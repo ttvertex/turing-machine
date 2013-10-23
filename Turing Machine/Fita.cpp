@@ -49,3 +49,11 @@ void Fita::print(){
 		cout << fita.at(i) << " ";
 	cout << "]\n";
 }
+
+void Fita::print_sem_brancos(){
+	for(uint i = 0; i < fita.size(); i++){
+		if(fita[i] != 'B')
+			cout << fita[i];
+	}
+	cout << endl;
+}
