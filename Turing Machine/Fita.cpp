@@ -38,7 +38,7 @@ bool Fita::E(){
 	else
 		pos += ESQUERDA;
 #ifdef DEBUG
-	cout << "eptr da fita: " << pos - ESQUERDA << " -> " << pos << endl;
+	cout << "ptr da fita: " << pos - ESQUERDA << " -> " << pos << endl;
 #endif
 	return true;
 }

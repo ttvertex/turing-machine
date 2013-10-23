@@ -170,7 +170,7 @@ Transicao_t TuringMachine::parse_transicao(Estado_t& e, int index){
 		}
 	}
 #ifdef DEBUG
-	cout << t << endl;
+	//cout << t << endl;
 #endif
 	return t;
 }
