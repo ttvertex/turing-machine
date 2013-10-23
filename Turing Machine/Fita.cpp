@@ -44,7 +44,7 @@ bool Fita::E(){
 }
 
 void Fita::print(){
-	cout  << "\n[ ";
+	cout  << "[ ";
 	for(uint i = 0; i < fita.size(); i++)
 		cout << fita.at(i) << " ";
 	cout << "]\n";

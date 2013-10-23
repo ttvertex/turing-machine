@@ -16,8 +16,9 @@ a b # B
 (q4,a)=(q3,b,E)
 (q4,#)=(qac,b,E)
 P
-3
+4
 aaaba#ababbb
 aaaabbb
 bbab#aab
+abab
 
