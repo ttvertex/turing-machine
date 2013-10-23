@@ -6,6 +6,7 @@
 #include <vector>
 #include <string.h>
 #include <cstdlib>
+#include <cstdio>
 
 //#define DEBUG
 

@@ -12,7 +12,7 @@ public:
 	bool processa_funcao(string input);
 	
 private:	
-	int index_in(string& str, vest& ve); //returns the index
+	int index_in(string& str, vest& ve); //returns the index of the transition in the vector of 
 	vest create_estados();
 	int verifica_transicao(Estado_t& e, char c); // verifica se o estado e tem uma transicao para c
 	Transicao_t parse_transicao(Estado_t& e, int i); // verifica para qual estado a transicao leva, retorna o nome do estado

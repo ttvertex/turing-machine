@@ -1,7 +1,6 @@
 #include "TuringMachine.h"
 
 #include <map>
-#include <cstdio>
 
 /**
  * 
@@ -61,11 +60,15 @@ bool TuringMachine::reconhecer_linguagem(string input){
 			fita.D();
 		else if(t.direcao == 'E'){
 			if(!fita.E()){ // mover para negativo! fita finita para a esquerda.
-				//cout << "mover para negativo! fita finita para a esquerda." <<endl;
+#ifdef DEBUG
+				cout << "mover para negativo! fita finita para a esquerda." <<endl;
+#endif
 				return false;
 			}
 		}else{
+#ifdef DEBUG
 			cout << "\nErro: direcao intexistente!" << endl;
+#endif
 			exit(EXIT_FAILURE);
 		}
 
