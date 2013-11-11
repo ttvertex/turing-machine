@@ -1,0 +1,34 @@
+@book{davis2001,
+ author = {Davis, Martin},
+ title = {Engines of Logic: Mathematicians and the Origin of the Computer},
+ year = {2001},
+ isbn = {0393322297},
+ publisher = {W. W. Norton  \& Co., Inc.},
+ address = {New York, NY, USA},
+} 
+@book{hodges1999,
+  title={Turing um fil{\'o}sofo da natureza},
+  author={Hodges, A.},
+  isbn={9788571393486},
+  series={Cole{\c{c}}{\~a}o grandes fil{\'o}sofos},
+  url={http://books.google.com.br/books?id=dph8GdmkgLAC},
+  year={1999},
+  publisher={Editora UNESP}
+}
+
+@article{Turing1936,
+  added-at = {2011-12-15T17:25:32.000+0100},
+  author = {Turing, Alan M.},
+  biburl = {http://www.bibsonomy.org/bibtex/297ba9ab572e2017ce1dd25da3af837af/djain},
+  interhash = {8ac1f5e961ff74849ab6f0c7348b9c9c},
+  intrahash = {97ba9ab572e2017ce1dd25da3af837af},
+  journal = {Proceedings of the London Mathematical Society},
+  keywords = {logic},
+  pages = {230--265},
+  series = 2,
+  timestamp = {2011-12-15T17:25:32.000+0100},
+  title = {On Computable Numbers, with an application to the
+Entscheidungsproblem},
+  volume = 42,
+  year = 1936
+}
